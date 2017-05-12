@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--DANIEL-VersionUpdate: This Version value needs to be updated for a new upgrade-->
+<ServiceManifest Name="PressServicePkg"
+                 Version="4.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- This is the name of your ServiceType. 
+         This name must match the string used in RegisterServiceType call in Program.cs. -->
+    <StatelessServiceType ServiceTypeName="PressServiceType" />
+  </ServiceTypes>
+
+  <!-- Code package is your service executable. -->
+  <!--DANIEL-VersionUpdate: This Version value needs to be updated for a new upgrade-->
+  <CodePackage Name="Code" Version="4.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>PressService.exe</Program>
+        <!--DANIEL-AddLogFile: This is a setting to redirect the Console output to a log file-->
+        <ConsoleRedirection FileRetentionCount="5" FileMaxSizeInKb="2048"/>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+
+  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
+       independently-updateable and versioned set of custom configuration settings for your service. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <Resources>
+    <Endpoints>
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
+           listen. Please note that if your service is partitioned, this port is shared with 
+           replicas of different partitions that are placed in your code. -->
+      <Endpoint Name="ServiceEndpoint" />
+      <Endpoint Name="ServiceHttpEndPoint" Port="9000" Type="Input" Protocol="http" />
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
