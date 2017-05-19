@@ -52,7 +52,7 @@ namespace PressService
             string scheme = endpointConfig.Protocol.ToString();
             string nodeName = this.Context.NodeContext.NodeName;
             string servicename = this.Context.ServiceTypeName;
-            string uri = string.Format(CultureInfo.InvariantCulture, "{0}://{1}:{2}/{3}/{4}/", scheme, host, port, nodeName, servicename);
+            string uri = string.Format(CultureInfo.InvariantCulture, "{0}://{1}:{2}/{3}/{4}.svc", scheme, host, port, nodeName, servicename);
 
             WcfCommunicationListener<IPressContract> pressListener = new WcfCommunicationListener<IPressContract>(this.Context, this, binding, new EndpointAddress(uri));
 
@@ -61,9 +61,9 @@ namespace PressService
             {
                 ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
                 behavior.HttpGetEnabled = true;
-                behavior.HttpGetUrl = new Uri(uri + "mex/");
+                behavior.HttpGetUrl = new Uri(uri + "/mex/");
                 pressListener.ServiceHost.Description.Behaviors.Add(behavior);
-                pressListener.ServiceHost.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), uri + "mex/");
+                pressListener.ServiceHost.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), uri + "/mex/");
             }
 
             ServiceInstanceListener listener = new ServiceInstanceListener(context => pressListener);

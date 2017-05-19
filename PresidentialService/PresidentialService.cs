@@ -52,7 +52,7 @@ namespace PresidentialService
             string scheme = endpointConfig.Protocol.ToString();
             string nodeName = this.Context.NodeContext.NodeName;
             string servicename = this.Context.ServiceTypeName;
-            string uri = string.Format(CultureInfo.InvariantCulture, "{0}://{1}:{2}/{3}/{4}/", "net." + scheme, host, port, nodeName, servicename);
+            string uri = string.Format(CultureInfo.InvariantCulture, "{0}://{1}:{2}/{3}/{4}.svc", "net." + scheme, host, port, nodeName, servicename);
 
             WcfCommunicationListener<IPresidentialService> pressListener = new WcfCommunicationListener<IPresidentialService>(this.Context, this, binding, new EndpointAddress(uri));
 

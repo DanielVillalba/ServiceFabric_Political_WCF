@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--DANIEL-VersionUpdate: This Version value needs to be updated for a new upgrade-->
 <ServiceManifest Name="PresidentialServicePkg"
-                 Version="4.0.0"  
+                 Version="1.0.0"  
                  xmlns="http://schemas.microsoft.com/2011/01/fabric"
                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -13,7 +13,7 @@
 
   <!-- Code package is your service executable. -->
   <!--DANIEL-VersionUpdate: This Version value needs to be updated for a new upgrade-->
-  <CodePackage Name="Code" Version="4.0.0">
+  <CodePackage Name="Code" Version="1.0.0">
     <EntryPoint>
       <ExeHost>
         <Program>PresidentialService.exe</Program>
